@@ -346,3 +346,31 @@ var ct1 = document
   .registerElement("dom-grouptag", {
     prototype: ct1p
   });
+  
+  
+var e1PT = Object
+  .create(HTMLElement
+    .prototype)
+
+e1PT.createdCallback = function () {
+  Notification.requestPermission();
+  
+  var shadow = this.createShadowRoot();
+  var split = (this.innerHTML)
+    .split(/;/g)
+  
+  var notification = new Notification(
+    split[0], {
+        dir: "auto",
+        lang: "",
+        body: split[1],
+        tag: "auto",
+        icon: split[2]
+    });
+}
+
+var e1e = document.registerElement(
+  "api-notification", {
+    prototype: e1PT
+  }
+);
